@@ -364,13 +364,9 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         jLabel2.setOpaque(false);
         jLabel2.setBackground(new Color(30,30,30));
-    }//GEN-LAST:event_jLabel2MouseExited
-
-    private Search getAStar() {
-        Search unit = new AStartSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
-        unit.search();
-        return unit;
     }
+    
+    //GEN-LAST:event_jLabel2MouseExited
     /**
      * @param args the command line arguments
      */
