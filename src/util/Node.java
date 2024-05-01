@@ -61,10 +61,6 @@ import java.util.HashSet;public class Node {
     public String getValue() {
         return value;
     }
-    
-    public void setValue(String s) {
-        value = s;
-    }
 
     public void setParent(Node parent) {
         before = parent;
@@ -78,10 +74,6 @@ import java.util.HashSet;public class Node {
         return heuristic;
     }
 
-    public void setHeuristic(int heuristic) {
-        this.heuristic = heuristic;
-    }
-
     private static int countHeuristic(String current, String target) {
         int len = target.length();
 
@@ -93,7 +85,7 @@ import java.util.HashSet;public class Node {
             }
         }
 
-        return counter;
+        return counter*2;
     }
 
     public int getPriorityValue() {
@@ -172,7 +164,6 @@ import java.util.HashSet;public class Node {
                         newNode.setParent(this);
                         newNode.setLength(this.length+1);
                         list.add(newNode);
-
                     }
                 }
             }

@@ -8,12 +8,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import util.Node;
 
@@ -22,21 +20,17 @@ import util.Node;
  * @author Suthasoma
  */
 public class DisplaySolution extends javax.swing.JFrame {
-    
-    private JFrame parent;
 
     /**
      * Creates new form DisplaySolution
      */
-    public DisplaySolution(Node solution, int timeElapsed, int nVisited, javax.swing.JFrame parent) {
+    public DisplaySolution(Node solution, int timeElapsed, int nVisited) {
         
         initComponents();
         
         this.setIconImage(new ImageIcon("src/icon.image/controller.png").getImage());
         
         JFrame.setDefaultLookAndFeelDecorated(true);
-        
-        this.parent = parent;
         
         int len = solution.length();
         
@@ -72,7 +66,7 @@ public class DisplaySolution extends javax.swing.JFrame {
         
         int width = solution.getValue().length() > 24 ? 1800 : solution.getValue().length() * 75;
         
-        int height = len > 10 ? 12 * 60 : len * 60;
+        int height = len > 10 ? 12 * 60 : (len + 1) * 60;
         
         gbc.gridy = 3;
         jPanel1.add(nodeVisited, gbc);
@@ -102,7 +96,7 @@ public class DisplaySolution extends javax.swing.JFrame {
         gbc.gridy = con+5;
         jPanel1.add(dummy2, gbc);
         
-        jPanel1.setSize(new Dimension(width, (len)*60));
+        jPanel1.setSize(new Dimension(width, (len+1)*60));
         
         jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -200,11 +194,6 @@ public class DisplaySolution extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 51, 51));
         setIconImages(null);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -236,11 +225,6 @@ public class DisplaySolution extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-        parent.setEnabled(true);
-    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

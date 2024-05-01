@@ -7,10 +7,7 @@
 * [Screenshots](#screenshots)
 * [How to Use](#setup)
 * [Usage](#how-to-use)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
 <!-- * [License](#license) -->
 
 
@@ -26,8 +23,8 @@ As one of the assignments in the Algorithm Strategy course, this program applies
 
 ## Features
 This program is made to solve the Word Ladder problems using the algoritms below:
-- UCS - Uniform Cost Search
-- Greedy BFS
+- UCS (Uniform Cost Search)
+- Greedy BFS (Best First Search)
 - A* (A Star)
 
 
@@ -61,48 +58,40 @@ If the solution doesn't exist the display is would be like this.
 This program requires
 - ```Java 21+```
 - ```Java swing library``` 
-If you dont have the installed ```Java 21``` version or higher, you need to install it first. 
+If you dont have the installed ```Java 21``` version or higher on your device, you need to install it first. 
 
 
 ## How to Use
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
 
 Go the root directory of this project.
-This program is used 
+This program will use the `jar` file.
 
+So, make sure you are in the correct root directory of this project.
 
-## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Because some file is relatively read and the program may abort if the relative working directory isn't in the required path.
 
+> Please do not edit the code in the src directory without using the Netbeans Apache IDE. Class files may be violated.
 
-## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+To run this program use this command in your terminal
 
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
+Command Prompt Windows
+```
+run.bat
+```
+Windows Powershell
+```
+./run.bat
+```
+Linux
+```
+./run.sh
+```
+Another alternative to run this program is using command below
+```
+java -jar dist/WordLadder.jar
+```
 
 ## Acknowledgements
 Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
-
-
-## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+- This project was inspired by the IRK Assistant
+- This project was based on [this module](https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/Route-Planning-Bagian1-2021.pdf).

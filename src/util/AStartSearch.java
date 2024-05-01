@@ -23,8 +23,32 @@ public class AStartSearch extends Search{
             counterNode++;
             if (currNode.getValue().equals(end)) {
                 
-                solution = currNode;
-                found = true;
+                if (solution != null) {
+                    if (solution.length() > currNode.length()){
+                        solution = currNode;
+                    }
+                } else {
+                    solution = currNode;
+                }
+
+                PriorityQueue<Node> filtered = new PriorityQueue<>(new AStarComparator());
+                Iterator<Node> iterator = queue.iterator();
+
+                while (iterator.hasNext()) {
+                    Node elem = iterator.next();
+                    if (elem.getPriorityValue() <= solution.getPriorityValue()) {
+                        filtered.add(elem);
+                    }
+                }
+
+                if (filtered.isEmpty()) {
+                    found = true;
+                    continue;
+                }
+
+                queue.clear();
+                queue.addAll(filtered);
+
                 continue;
             }
             ArrayList<Node> childs = currNode.generateChildHeuristic(end);

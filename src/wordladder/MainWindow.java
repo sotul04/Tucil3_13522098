@@ -306,10 +306,9 @@ public class MainWindow extends javax.swing.JFrame {
         if (solution.getSolution() == null) {
             JOptionPane.showMessageDialog(rootPane, "Solusi tidak ditemukan", "Solutions not found", JOptionPane.PLAIN_MESSAGE);
         } else {
-            DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode(), this);
+            DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode());
             disp.setVisible(true);
             disp.setLocationRelativeTo(this);
-            this.setEnabled(false);
         }
     }
     
