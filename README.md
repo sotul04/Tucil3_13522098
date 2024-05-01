@@ -92,6 +92,5 @@ java -jar dist/WordLadder.jar
 ```
 
 ## Acknowledgements
-Give credit here.
 - This project was inspired by the IRK Assistant
 - This project was based on [this module](https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/Route-Planning-Bagian1-2021.pdf).
