@@ -272,7 +272,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void searchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseClicked
         // TODO add your handling code here:
+        searchButton.setEnabled(false);
         search();
+        searchButton.setEnabled(true);
     }//GEN-LAST:event_searchButtonMouseClicked
 
     private void search() {

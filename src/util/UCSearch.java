@@ -5,11 +5,8 @@ import java.util.HashSet;
 
 public class UCSearch extends Search{
 
-    private HashSet<String> visited;
-
     public UCSearch(String start, String end) {
         super(start, end, new UCSComparator());
-        visited = new HashSet<>();
     }
 
     @Override

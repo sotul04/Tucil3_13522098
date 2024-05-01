@@ -1,20 +1,18 @@
 package util;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 public abstract class Search {
 
     protected String start;
     protected String end;
-
     protected int counterNode;
-
     protected boolean found;
-
     protected Node solution;
-
     protected PriorityQueue<Node> queue;
+    protected HashSet<String> visited;
 
     public Search(String start, String end, Comparator<Node> comparator) {
         this.start = start;
@@ -23,14 +21,7 @@ public abstract class Search {
         this.solution = null;
         this.found = false;
         this.queue = new PriorityQueue<>(comparator);
-    }
-
-    public String getStart() {
-        return this.start;
-    }
-
-    public String getEnd() {
-        return this.end;
+        visited = new HashSet<>();
     }
 
     public int getCounterNode() {
@@ -40,18 +31,6 @@ public abstract class Search {
     public Node getSolution() {
         return this.solution;
     }
-
-    public void setSolution(Node solution) {
-        this.solution = solution;
-    }
-
-    public PriorityQueue<Node> getQueue() {
-        return this.queue;
-    }
-
-    public boolean isSolutionFound() {
-        return found;
-    }
-
+    
     public abstract void search();
 }

@@ -8,9 +8,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import util.Node;
 
 /**
@@ -44,31 +48,42 @@ public class DisplaySolution extends javax.swing.JFrame {
         nodeVisited.setForeground(Color.white);
         npathLabel.setForeground(Color.white);
         
-        JLabel dummy = new JLabel("   ");
-                
         jPanel1.setLayout(new GridBagLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 2, 0, 2);
         
-        jPanel1.add(npathLabel, gbc);
+        JLabel dummy = new JLabel("   ");
+        JLabel dummy1 = new JLabel("   ");
+        JLabel dummy2 = new JLabel("   ");
+        
+        gbc.gridx = 0;
+        
+        gbc.gridy = 0;
+        jPanel1.add(dummy1, gbc);
         
         gbc.gridy = 1;
+        jPanel1.add(npathLabel, gbc);
+        
+        gbc.gridy = 2;
         jPanel1.add(timeLabel, gbc);
+        
+//        jPanel1.setOpaque(true);
+//        jPanel1.setBackground(new Color(0,255,0));
         
         int width = 60 * solution.getValue().length();
         
-        gbc.gridy = 2;
-        jPanel1.add(nodeVisited,gbc);
+        int height = len > 10 ? 12 * 60 : (len+3) * 60;
         
         gbc.gridy = 3;
+        jPanel1.add(nodeVisited, gbc);
+        
+        gbc.gridy = 4;
         jPanel1.add(dummy, gbc);
         
         boolean[][] match = getMatch(solution);
         boolean[][] change = getChange(solution);
         boolean[][] diff = getDiff(solution);
-        
         
         String path[] = new String[len];
         
@@ -80,14 +95,23 @@ public class DisplaySolution extends javax.swing.JFrame {
         int con = 0;
         
         while (con < len) {
-            gbc.gridy = con + 4;
+            gbc.gridy = con + 5;
             jPanel1.add(new LineContainer(path[con],match[con], change[con], diff[con]), gbc);
             con ++;
         }
         
-        jPanel1.setSize(new Dimension(width, (2+con)*60));
+        gbc.gridy = con+5;
+        jPanel1.add(dummy2, gbc);
         
-        this.setSize(jPanel1.getSize());
+        jPanel1.setSize(new Dimension(width, (len+4)*60));
+        
+        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        
+        jScrollPane1.setSize(new Dimension(width, height));
+        
+        
+        this.setSize(jScrollPane1.getSize());
     }
     
     private static boolean[][] getMatch(Node solution) {
@@ -169,6 +193,7 @@ public class DisplaySolution extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
         setTitle("Solusi ");
@@ -182,17 +207,32 @@ public class DisplaySolution extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 406, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 365, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -205,5 +245,6 @@ public class DisplaySolution extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class BestFirstSearch extends Search {
 
@@ -11,6 +12,7 @@ public class BestFirstSearch extends Search {
     public void search() {
         Node startNode = new Node(start);
         queue.add(startNode);
+        visited.add(start);
         
         while (!queue.isEmpty() && !found) {
             counterNode++;
@@ -23,7 +25,10 @@ public class BestFirstSearch extends Search {
             ArrayList<Node> childs = currNode.generateChildHeuristic(end);
             
             for (Node child : childs) {
-                queue.add(child);
+                if (!visited.contains(child.getValue())){
+                    queue.add(child);
+                }
+                visited.add(child.getValue());
             }
         }
     }
