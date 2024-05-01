@@ -1,4 +1,4 @@
-# WORD LADDER - 13522098
+# WORD LADDER - Suthasoma Mahardhika Munthe 13522098
 
 ## Table of Contents
 * [General Info](#general-information)
