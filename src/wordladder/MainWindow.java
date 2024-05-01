@@ -144,11 +144,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/ABC.png"))); // NOI18N
 
-        jLabel2.setHorizontalAlignment(JLabel.CENTER);
+        jLabel2.setBackground(new Color(30,30,30));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/Close.png"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel2.setHorizontalAlignment(JLabel.CENTER);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
             }
         });
 
@@ -342,6 +351,18 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        // TODO add your handling code here:
+        jLabel2.setBackground(new Color(50,50,50));
+        jLabel2.setOpaque(true);
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        // TODO add your handling code here:
+        jLabel2.setOpaque(false);
+        jLabel2.setBackground(new Color(30,30,30));
+    }//GEN-LAST:event_jLabel2MouseExited
 
     private Search getAStar() {
         Search unit = new AStartSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
