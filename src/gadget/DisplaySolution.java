@@ -34,6 +34,8 @@ public class DisplaySolution extends javax.swing.JFrame {
         
         this.setIconImage(new ImageIcon("src/icon.image/controller.png").getImage());
         
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        
         this.parent = parent;
         
         int len = solution.length();
@@ -68,12 +70,9 @@ public class DisplaySolution extends javax.swing.JFrame {
         gbc.gridy = 2;
         jPanel1.add(timeLabel, gbc);
         
-//        jPanel1.setOpaque(true);
-//        jPanel1.setBackground(new Color(0,255,0));
+        int width = solution.getValue().length() > 24 ? 1800 : solution.getValue().length() * 75;
         
-        int width = 60 * solution.getValue().length();
-        
-        int height = len > 10 ? 12 * 60 : (len+3) * 60;
+        int height = len > 10 ? 12 * 60 : len * 60;
         
         gbc.gridy = 3;
         jPanel1.add(nodeVisited, gbc);
@@ -103,9 +102,9 @@ public class DisplaySolution extends javax.swing.JFrame {
         gbc.gridy = con+5;
         jPanel1.add(dummy2, gbc);
         
-        jPanel1.setSize(new Dimension(width, (len+4)*60));
+        jPanel1.setSize(new Dimension(width, (len)*60));
         
-        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         
         jScrollPane1.setSize(new Dimension(width, height));
