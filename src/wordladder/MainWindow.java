@@ -307,6 +307,11 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Solusi tidak ditemukan", "Solutions not found", JOptionPane.PLAIN_MESSAGE);
         } else {
             DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode());
+//            Node show = solution.getSolution();
+//            while (show != null) {
+//                System.out.println("Node: "+show.getValue() + ", length" + show.length()+ ", heuristic: "+show.getHeuristic());
+//                show = show.getParent();
+//            }
             disp.setVisible(true);
             disp.setLocationRelativeTo(this);
         }
@@ -366,7 +371,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2.setBackground(new Color(30,30,30));
     }
     
-    //GEN-LAST:event_jLabel2MouseExited
+//GEN-LAST:event_jLabel2MouseExited
     /**
      * @param args the command line arguments
      */

@@ -85,15 +85,11 @@ import java.util.HashSet;public class Node {
             }
         }
 
-        return counter*2;
+        return counter;
     }
 
     public int getPriorityValue() {
         return length + heuristic;
-    }
-
-    public boolean isDead() {
-        return value.equals(new String(""));
     }
 
     private boolean isValueVisited(String val) {
@@ -164,12 +160,22 @@ import java.util.HashSet;public class Node {
                         newNode.setParent(this);
                         newNode.setLength(this.length+1);
                         list.add(newNode);
+                        
                     }
                 }
             }
         }
 
         return list;
+    }
+    
+    @Override
+    public boolean equals(Object anObject) {
+        if (this == anObject) {
+            return true;
+        } 
+        return (anObject instanceof Node) &&
+                ((Node) anObject).getValue().equals(getValue());
     }
     
 }
