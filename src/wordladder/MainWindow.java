@@ -28,6 +28,8 @@ public class MainWindow extends javax.swing.JFrame {
         setIconImage(new ImageIcon("src/icon.image/icon.png").getImage());
         warningLabel.setForeground(Color.RED);
         warningLabel.setText("");
+        startCounter.setText(textStart.getText().length() + " chars");
+        endCounter.setText(textEnd.getText().length() + " chars");
     }
 
     /**
@@ -51,6 +53,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         warningLabel = new javax.swing.JLabel();
+        startCounter = new javax.swing.JLabel();
+        endCounter = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Word Ladder");
@@ -166,45 +170,53 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 204, 255));
         jLabel3.setText("WORD LADDER");
 
+        startCounter.setForeground(new java.awt.Color(255, 255, 255));
+
+        endCounter.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(startLabel)
-                            .addComponent(endLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textStart, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                            .addComponent(textEnd))
-                        .addGap(17, 17, 17)))
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(labelTypeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143))))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(startLabel)
+                    .addComponent(endLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textStart, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(textEnd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startCounter, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(endCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(labelTypeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -224,14 +236,16 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startLabel)
-                    .addComponent(textStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(endLabel)
-                    .addComponent(textEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(textEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addComponent(labelTypeSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,22 +297,27 @@ public class MainWindow extends javax.swing.JFrame {
         long startTime;
         long endTime;
         
+        String type;
+        
         Search solution;
         if (searchType.getSelectedIndex() == 0) {
             solution = new UCSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
+            type = "Uniform Cost Search";
         } else if (searchType.getSelectedIndex() == 1) {
             solution = new BestFirstSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
+            type = "Greedy Best First Search";
         } else {
             solution = new AStartSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
+            type = "A* Star";
         }
         
         long elapsed = endTime - startTime;
@@ -306,12 +325,7 @@ public class MainWindow extends javax.swing.JFrame {
         if (solution.getSolution() == null) {
             JOptionPane.showMessageDialog(rootPane, "Solusi tidak ditemukan", "Solutions not found", JOptionPane.PLAIN_MESSAGE);
         } else {
-            DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode());
-//            Node show = solution.getSolution();
-//            while (show != null) {
-//                System.out.println("Node: "+show.getValue() + ", length" + show.length()+ ", heuristic: "+show.getHeuristic());
-//                show = show.getParent();
-//            }
+            DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode(), type);
             disp.setVisible(true);
             disp.setLocationRelativeTo(this);
         }
@@ -330,6 +344,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void validateInput() {
         String start = textStart.getText().toLowerCase();
         String end = textEnd.getText().toLowerCase();
+        
+        startCounter.setText(start.length() + " chars");
+        endCounter.setText(end.length() + " chars");
                 
         if (!Node.dictionary.contains(start) || !Node.dictionary.contains(end)) {
             warningLabel.setText("Kata yang dimasukkan tidak ada dalam kamus.");
@@ -417,6 +434,7 @@ public class MainWindow extends javax.swing.JFrame {
     private Point mouseCoordinate;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel endCounter;
     private javax.swing.JLabel endLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -425,6 +443,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton searchButton;
     private javax.swing.JComboBox<String> searchType;
+    private javax.swing.JLabel startCounter;
     private javax.swing.JLabel startLabel;
     private javax.swing.JTextField textEnd;
     private javax.swing.JTextField textStart;

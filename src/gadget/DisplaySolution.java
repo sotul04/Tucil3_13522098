@@ -24,9 +24,11 @@ public class DisplaySolution extends javax.swing.JFrame {
     /**
      * Creates new form DisplaySolution
      */
-    public DisplaySolution(Node solution, int timeElapsed, int nVisited) {
+    public DisplaySolution(Node solution, int timeElapsed, int nVisited, String title) {
         
         initComponents();
+        
+        this.setTitle("Solution " + title);
         
         this.setIconImage(new ImageIcon("src/icon.image/controller.png").getImage());
         
