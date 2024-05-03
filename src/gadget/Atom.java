@@ -8,16 +8,11 @@ package gadget;
  *
  * @author Suthasoma
  */
-import java.awt.BasicStroke;
+
 import java.awt.Color;
-import java.awt.Component;
-import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Area;
@@ -26,9 +21,6 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.AbstractBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicBorders;
 
 public class Atom extends  JPanel{
 
@@ -93,8 +85,6 @@ public class Atom extends  JPanel{
     }
     
     private boolean isChange;
-    private boolean isDiff;
-    private boolean isMatch;
     private int roundTopLeft = 30;
     private int roundTopRight = 30;
     private int roundBottomLeft = 30;
@@ -111,8 +101,6 @@ public class Atom extends  JPanel{
         infoLabel.setPreferredSize(new Dimension(33,33));
         infoLabel.setForeground(Color.WHITE);
         this.isChange = isChange;
-        this.isDiff = isDiff;
-        this.isMatch = isMatch;
         this.setAlignmentX(CENTER_ALIGNMENT);
         if (isDiff && isMatch) {
             this.setBackground(new Color(120,229,70));
@@ -158,22 +146,6 @@ public class Atom extends  JPanel{
         }
         g2.fill(area);
         g2.dispose();
-//        if (isMatch && isDiff) {
-//            g2 = (Graphics2D) g.create();
-//            g2.setClip(area);
-//            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//            g2.setColor(Color.YELLOW);
-//            g2.drawRoundRect(0, 0, 38, 38, 30, 30);
-//            g2.drawRoundRect(1, 1, 37, 37, 29, 29);
-//            g2.drawRoundRect(1, 0, 37, 37, 29, 29);
-//            g2.drawRoundRect(0, 1, 37, 37, 29, 29);
-//            g2.drawRoundRect(1, 1, 37, 37, 29, 29);
-//            g2.drawRoundRect(2, 2, 36, 36, 28, 28);
-//            g2.drawRoundRect(1, 2, 36, 36, 28, 28);
-//            g2.drawRoundRect(2, 1, 36, 36, 28, 28);
-//            g2.drawRoundRect(1, 1, 36, 36, 28, 28);
-//            g.dispose();
-//        }
     }
         
     private Shape createRoundTopRight() {
