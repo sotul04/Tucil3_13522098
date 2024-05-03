@@ -29,10 +29,10 @@ public class LineContainer extends javax.swing.JPanel {
         gbc.insets = new Insets(0,2,0,2);
         for (int i = 0; i < n; i++) {
             gbc.gridx = i;
-            this.add(new Unit(Character.toString(lineString.charAt(i)), match[i], change[i], diff[i]), gbc);
+            this.add(new Atom(Character.toString(lineString.charAt(i)), match[i], change[i], diff[i]), gbc);
         }
         
-        this.setPreferredSize(new Dimension(45*n, 50));
+        this.setPreferredSize(new Dimension(45*n, 60));
     } 
 
     /**

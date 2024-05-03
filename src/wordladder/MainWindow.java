@@ -10,8 +10,9 @@ import java.awt.Color;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JLabel;
 import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import java.awt.Dimension;
 
 /**
  *
@@ -28,8 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
         setIconImage(new ImageIcon("src/icon.image/icon.png").getImage());
         warningLabel.setForeground(Color.RED);
         warningLabel.setText("");
-        startCounter.setText(textStart.getText().length() + " chars");
-        endCounter.setText(textEnd.getText().length() + " chars");
+      
     }
 
     /**
@@ -42,24 +42,24 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        textStart = new javax.swing.JTextField();
-        startLabel = new javax.swing.JLabel();
-        textEnd = new javax.swing.JTextField();
-        endLabel = new javax.swing.JLabel();
-        searchType = new javax.swing.JComboBox<>();
-        labelTypeSearch = new javax.swing.JLabel();
-        searchButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        startLabel = new javax.swing.JLabel();
+        endLabel = new javax.swing.JLabel();
+        inputStart = new wordladder.InputGrow();
+        inputEnd = new wordladder.InputGrow();
+        jPanel3 = new javax.swing.JPanel();
+        searchButton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        labelTypeSearch = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        searchType = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
         warningLabel = new javax.swing.JLabel();
-        startCounter = new javax.swing.JLabel();
-        endCounter = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Word Ladder");
-        setUndecorated(true);
-        setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -71,66 +71,99 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        mainPanel.setBackground(new java.awt.Color(0, 51, 51));
+        mainPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        textStart.setBackground(new java.awt.Color(0, 0, 0));
-        textStart.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        textStart.setForeground(new java.awt.Color(255, 255, 255));
-        textStart.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                textStartCaretUpdate(evt);
-            }
-        });
-        textStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textStartActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        startLabel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 204, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/logo.png"))); // NOI18N
+        jLabel3.setPreferredSize(new java.awt.Dimension(620, 90));
+        jPanel1.add(jLabel3);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        startLabel.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         startLabel.setForeground(new java.awt.Color(255, 255, 255));
-        startLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/Start.png"))); // NOI18N
-        startLabel.setLabelFor(textStart);
-        startLabel.setText("Start");
+        startLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        startLabel.setText("S t a r t");
         startLabel.setToolTipText("");
         startLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
-        textEnd.setBackground(new java.awt.Color(0, 0, 0));
-        textEnd.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        textEnd.setForeground(new java.awt.Color(255, 255, 255));
-        textEnd.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                textEndCaretUpdate(evt);
-            }
-        });
-        textEnd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textEndActionPerformed(evt);
-            }
-        });
-
-        endLabel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        endLabel.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         endLabel.setForeground(new java.awt.Color(255, 255, 255));
-        endLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/Stop_2.png"))); // NOI18N
-        endLabel.setText(" End");
+        endLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        endLabel.setText(" E n d");
 
-        searchType.setBackground(new java.awt.Color(0, 0, 0));
-        searchType.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        searchType.setForeground(new java.awt.Color(255, 255, 255));
-        searchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Cost Search (UCS)", "Greedy Best First Search", "A* (A Star)" }));
-        searchType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTypeActionPerformed(evt);
+        inputStart.setNextFocusableComponent(inputEnd);
+        inputStart.setOpaque(false);
+        inputStart.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                inputStartComponentAdded(evt);
+            }
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                inputStartComponentRemoved(evt);
+            }
+        });
+        inputStart.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputStartFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputStartFocusLost(evt);
+            }
+        });
+        inputStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputStartMouseClicked(evt);
+            }
+        });
+        inputStart.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputStartKeyTyped(evt);
             }
         });
 
-        labelTypeSearch.setForeground(new java.awt.Color(255, 255, 255));
-        labelTypeSearch.setText("Silahkan pilih algoritma yang digunakan  ");
+        inputEnd.setNextFocusableComponent(searchButton);
+        inputEnd.setOpaque(false);
+        inputEnd.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                inputEndComponentAdded(evt);
+            }
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                inputEndComponentRemoved(evt);
+            }
+        });
+        inputEnd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputEndFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputEndFocusLost(evt);
+            }
+        });
+        inputEnd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputEndMouseClicked(evt);
+            }
+        });
+        inputEnd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputEndKeyTyped(evt);
+            }
+        });
 
-        searchButton.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setOpaque(false);
+
+        searchButton.setBackground(new java.awt.Color(0, 51, 51));
+        searchButton.setFont(new java.awt.Font("STXinwei", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/Search.png"))); // NOI18N
         searchButton.setText("Search");
+        searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchButton.setPreferredSize(new java.awt.Dimension(100, 35));
+        searchButton.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchButtonMouseClicked(evt);
@@ -146,136 +179,123 @@ public class MainWindow extends javax.swing.JFrame {
                 searchButtonKeyPressed(evt);
             }
         });
+        jPanel3.add(searchButton);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/ABC.png"))); // NOI18N
+        jPanel4.setOpaque(false);
 
-        jLabel2.setBackground(new Color(30,30,30));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.image/Close.png"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel2.setHorizontalAlignment(JLabel.CENTER);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
+        labelTypeSearch.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        labelTypeSearch.setForeground(new java.awt.Color(255, 255, 255));
+        labelTypeSearch.setText("Please select the type of algorithm used");
+        jPanel4.add(labelTypeSearch);
+
+        jPanel5.setOpaque(false);
+
+        searchType.setBackground(new java.awt.Color(0, 0, 0));
+        searchType.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
+        searchType.setForeground(new java.awt.Color(255, 255, 255));
+        searchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Cost Search (UCS)", "Greedy Best First Search", "A* (A Star)" }));
+        searchType.setNextFocusableComponent(inputStart);
+        searchType.setOpaque(true);
+        searchType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTypeActionPerformed(evt);
             }
         });
+        jPanel5.add(searchType);
 
-        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 204, 255));
-        jLabel3.setText("WORD LADDER");
+        jPanel6.setOpaque(false);
+        jPanel6.add(warningLabel);
 
-        startCounter.setForeground(new java.awt.Color(255, 255, 255));
-
-        endCounter.setForeground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inputEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(endLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
+                .addGap(336, 336, 336))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(startLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputStart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(endLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addComponent(labelTypeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(startLabel)
-                    .addComponent(endLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textStart, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(textEnd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(startCounter, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(endCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38))
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startLabel)
-                    .addComponent(textStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(endLabel)
-                    .addComponent(textEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(labelTypeSearch)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(517, 331));
+        setSize(new java.awt.Dimension(757, 516));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStartActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textStartActionPerformed
-
-    private void textEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEndActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textEndActionPerformed
 
     private void searchTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeActionPerformed
         // TODO add your handling code here:
@@ -301,19 +321,19 @@ public class MainWindow extends javax.swing.JFrame {
         
         Search solution;
         if (searchType.getSelectedIndex() == 0) {
-            solution = new UCSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
+            solution = new UCSearch(inputStart.getText().toLowerCase(), inputEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
             type = "Uniform Cost Search";
         } else if (searchType.getSelectedIndex() == 1) {
-            solution = new BestFirstSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
+            solution = new BestFirstSearch(inputStart.getText().toLowerCase(), inputEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
             type = "Greedy Best First Search";
         } else {
-            solution = new AStartSearch(textStart.getText().toLowerCase(), textEnd.getText().toLowerCase());
+            solution = new AStartSearch(inputStart.getText().toLowerCase(), inputEnd.getText().toLowerCase());
             startTime = System.currentTimeMillis();
             solution.search();
             endTime = System.currentTimeMillis();
@@ -331,22 +351,9 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
-    private void textStartCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textStartCaretUpdate
-        // TODO add your handling code here:
-        validateInput();
-    }//GEN-LAST:event_textStartCaretUpdate
-
-    private void textEndCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textEndCaretUpdate
-        // TODO add your handling code here:
-        validateInput();
-    }//GEN-LAST:event_textEndCaretUpdate
-
     private void validateInput() {
-        String start = textStart.getText().toLowerCase();
-        String end = textEnd.getText().toLowerCase();
-        
-        startCounter.setText(start.length() + " chars");
-        endCounter.setText(end.length() + " chars");
+        String start = inputStart.getText().toLowerCase();
+        String end = inputEnd.getText().toLowerCase();
                 
         if (!Node.dictionary.contains(start) || !Node.dictionary.contains(end)) {
             warningLabel.setText("Kata yang dimasukkan tidak ada dalam kamus.");
@@ -371,24 +378,65 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocation(currCoordinate.x - mouseCoordinate.x, currCoordinate.y - mouseCoordinate.y);
     }//GEN-LAST:event_formMouseDragged
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void inputStartKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputStartKeyTyped
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel2MouseClicked
+        inputStart.typing(evt.getKeyChar());
+    }//GEN-LAST:event_inputStartKeyTyped
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+    private void inputEndKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputEndKeyTyped
         // TODO add your handling code here:
-        jLabel2.setBackground(new Color(50,50,50));
-        jLabel2.setOpaque(true);
-    }//GEN-LAST:event_jLabel2MouseEntered
+        inputEnd.typing(evt.getKeyChar());
+    }//GEN-LAST:event_inputEndKeyTyped
 
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+    private void inputStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputStartMouseClicked
         // TODO add your handling code here:
-        jLabel2.setOpaque(false);
-        jLabel2.setBackground(new Color(30,30,30));
-    }
-    
-//GEN-LAST:event_jLabel2MouseExited
+        inputStart.requestFocus();
+    }//GEN-LAST:event_inputStartMouseClicked
+
+    private void inputEndMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputEndMouseClicked
+        // TODO add your handling code here:
+        inputEnd.requestFocus();
+    }//GEN-LAST:event_inputEndMouseClicked
+
+    private void inputStartFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputStartFocusGained
+        // TODO add your handling code here:
+        inputStart.setBorder(new LineBorder(new Color(51,141,248), 1, true));
+    }//GEN-LAST:event_inputStartFocusGained
+
+    private void inputStartFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputStartFocusLost
+        // TODO add your handling code here:
+        inputStart.setBorder(null);
+    }//GEN-LAST:event_inputStartFocusLost
+
+    private void inputEndFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEndFocusGained
+        // TODO add your handling code here:
+        inputEnd.setBorder(new LineBorder(new Color(51,141,248), 1, true));
+    }//GEN-LAST:event_inputEndFocusGained
+
+    private void inputEndFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEndFocusLost
+        // TODO add your handling code here:
+        inputEnd.setBorder(null);
+    }//GEN-LAST:event_inputEndFocusLost
+
+    private void inputStartComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_inputStartComponentAdded
+        // TODO add your handling code here:
+        validateInput();
+    }//GEN-LAST:event_inputStartComponentAdded
+
+    private void inputEndComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_inputEndComponentAdded
+        // TODO add your handling code here:
+        validateInput();
+    }//GEN-LAST:event_inputEndComponentAdded
+
+    private void inputStartComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_inputStartComponentRemoved
+        // TODO add your handling code here:
+        validateInput();
+    }//GEN-LAST:event_inputStartComponentRemoved
+
+    private void inputEndComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_inputEndComponentRemoved
+        // TODO add your handling code here:
+        validateInput();
+    }//GEN-LAST:event_inputEndComponentRemoved
     /**
      * @param args the command line arguments
      */
@@ -434,19 +482,21 @@ public class MainWindow extends javax.swing.JFrame {
     private Point mouseCoordinate;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel endCounter;
     private javax.swing.JLabel endLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private wordladder.InputGrow inputEnd;
+    private wordladder.InputGrow inputStart;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelTypeSearch;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton searchButton;
     private javax.swing.JComboBox<String> searchType;
-    private javax.swing.JLabel startCounter;
     private javax.swing.JLabel startLabel;
-    private javax.swing.JTextField textEnd;
-    private javax.swing.JTextField textStart;
     private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
 }

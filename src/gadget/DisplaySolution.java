@@ -4,14 +4,12 @@
  */
 package gadget;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import util.Node;
 
@@ -37,44 +35,25 @@ public class DisplaySolution extends javax.swing.JFrame {
         int len = solution.length();
         
         int pathlen = len > 0 ? len - 1 : 0;
-        
-        JLabel npathLabel = new JLabel("Panjang lintasan: "+pathlen);
-        JLabel timeLabel = new JLabel(timeElapsed + " ms");
-        JLabel nodeVisited = new JLabel(nVisited + " node dikunjungi");
-        
-        timeLabel.setForeground(Color.white);
-        nodeVisited.setForeground(Color.white);
-        npathLabel.setForeground(Color.white);
-        
+
         jPanel1.setLayout(new GridBagLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(0, 2, 0, 2);
+     
         
-        JLabel dummy = new JLabel("   ");
-        JLabel dummy1 = new JLabel("   ");
-        JLabel dummy2 = new JLabel("   ");
+        pathLength.setText(pathlen <= 0 ? "0" : pathlen + " nodes");
+        elapsedTime.setText(timeElapsed+" ms");
+        counterNode.setText(nVisited <= 0 ? "0" : nVisited + " nodes");
         
         gbc.gridx = 0;
         
         gbc.gridy = 0;
-        jPanel1.add(dummy1, gbc);
-        
-        gbc.gridy = 1;
-        jPanel1.add(npathLabel, gbc);
-        
-        gbc.gridy = 2;
-        jPanel1.add(timeLabel, gbc);
         
         int width = solution.getValue().length() > 24 ? 1800 : solution.getValue().length() * 75;
         
         int height = len > 10 ? 12 * 60 : (len + 1) * 60;
-        
-        gbc.gridy = 3;
-        jPanel1.add(nodeVisited, gbc);
-        
-        gbc.gridy = 4;
-        jPanel1.add(dummy, gbc);
+       
         
         boolean[][] match = getMatch(solution);
         boolean[][] change = getChange(solution);
@@ -90,13 +69,10 @@ public class DisplaySolution extends javax.swing.JFrame {
         int con = 0;
         
         while (con < len) {
-            gbc.gridy = con + 5;
+            gbc.gridy = con;
             jPanel1.add(new LineContainer(path[con],match[con], change[con], diff[con]), gbc);
             con ++;
         }
-        
-        gbc.gridy = con+5;
-        jPanel1.add(dummy2, gbc);
         
         jPanel1.setSize(new Dimension(width, (len+1)*60));
         
@@ -190,15 +166,26 @@ public class DisplaySolution extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lengthLabel = new javax.swing.JLabel();
+        elapsedTimeLabel = new javax.swing.JLabel();
+        visitedNodeLabel = new javax.swing.JLabel();
+        pathLength = new javax.swing.JLabel();
+        elapsedTime = new javax.swing.JLabel();
+        counterNode = new javax.swing.JLabel();
 
         setTitle("Solusi ");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 51, 51));
         setIconImages(null);
+        setMinimumSize(new java.awt.Dimension(200, 40));
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setForeground(new java.awt.Color(0, 51, 51));
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,22 +200,88 @@ public class DisplaySolution extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        lengthLabel.setForeground(new java.awt.Color(204, 255, 255));
+        lengthLabel.setText("Path length:");
+
+        elapsedTimeLabel.setForeground(new java.awt.Color(204, 255, 255));
+        elapsedTimeLabel.setText("Time elapsed:");
+
+        visitedNodeLabel.setForeground(new java.awt.Color(204, 255, 255));
+        visitedNodeLabel.setText("Visited node:");
+
+        pathLength.setForeground(new java.awt.Color(255, 102, 102));
+        pathLength.setText("jLabel1");
+
+        elapsedTime.setForeground(new java.awt.Color(255, 102, 102));
+        elapsedTime.setText("jLabel2");
+
+        counterNode.setForeground(new java.awt.Color(255, 102, 102));
+        counterNode.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lengthLabel)
+                    .addComponent(elapsedTimeLabel)
+                    .addComponent(visitedNodeLabel))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pathLength)
+                    .addComponent(elapsedTime)
+                    .addComponent(counterNode))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lengthLabel)
+                    .addComponent(pathLength))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(elapsedTimeLabel)
+                    .addComponent(elapsedTime))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(visitedNodeLabel)
+                    .addComponent(counterNode))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel counterNode;
+    private javax.swing.JLabel elapsedTime;
+    private javax.swing.JLabel elapsedTimeLabel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lengthLabel;
+    private javax.swing.JLabel pathLength;
+    private javax.swing.JLabel visitedNodeLabel;
     // End of variables declaration//GEN-END:variables
 }
