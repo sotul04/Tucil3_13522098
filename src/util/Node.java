@@ -13,9 +13,9 @@ import java.util.HashSet;public class Node {
         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     };
 
-    public static void initDictionary() {
+    public static void initDictionary(String path) {
         try {
-            dictionary = Dictionary.getDictionary();
+            dictionary = Dictionary.getDictionary(path);
         } catch (Exception e) {
             e.printStackTrace();
         }

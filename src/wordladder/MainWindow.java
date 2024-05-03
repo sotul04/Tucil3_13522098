@@ -7,11 +7,15 @@ package wordladder;
 import util.*;
 import gadget.DisplaySolution;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -24,7 +28,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
-        Node.initDictionary();
+        Node.initDictionary("src/util/dictionary.txt");
         setIconImage(new ImageIcon("src/icon.image/icon.png").getImage());
         warningLabel.setForeground(Color.RED);
         warningLabel.setText("");
@@ -56,6 +60,7 @@ public class MainWindow extends javax.swing.JFrame {
         searchType = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         warningLabel = new javax.swing.JLabel();
+        changeDictionary = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Word Ladder");
@@ -205,6 +210,15 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel6.setOpaque(false);
         jPanel6.add(warningLabel);
 
+        changeDictionary.setBackground(new java.awt.Color(0, 51, 51));
+        changeDictionary.setForeground(new java.awt.Color(255, 255, 255));
+        changeDictionary.setText("Change Dictionary");
+        changeDictionary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeDictionaryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -237,8 +251,14 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(changeDictionary)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +277,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(inputEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changeDictionary, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -292,7 +314,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(757, 516));
+        setSize(new java.awt.Dimension(757, 552));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -436,6 +458,22 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateInput();
     }//GEN-LAST:event_inputEndComponentRemoved
+
+    private void changeDictionaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDictionaryActionPerformed
+        // TODO add your handling code here:
+        JFileChooser dictionaryChooser = new JFileChooser();
+        dictionaryChooser.setDialogTitle("Choose the new Dictionary.");
+        dictionaryChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files (*.txt)", "txt");
+        dictionaryChooser.setFileFilter(filter);
+        dictionaryChooser.setPreferredSize(new Dimension(800,600));
+        int option = dictionaryChooser.showOpenDialog(this);
+        
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File chosenFile = dictionaryChooser.getSelectedFile();
+            Node.initDictionary(chosenFile.getAbsolutePath());
+        }
+    }//GEN-LAST:event_changeDictionaryActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -481,6 +519,7 @@ public class MainWindow extends javax.swing.JFrame {
     private Point mouseCoordinate;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changeDictionary;
     private javax.swing.JLabel endLabel;
     private wordladder.InputGrow inputEnd;
     private wordladder.InputGrow inputStart;
