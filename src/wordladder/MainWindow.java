@@ -502,8 +502,6 @@ public class MainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow().setVisible(true);
-                String currentDir = System.getProperty("user.dir");
-                System.out.println(currentDir);
                 try {
                     javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
