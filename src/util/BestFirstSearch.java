@@ -1,7 +1,5 @@
 package util;
 
-import java.util.ArrayList;
-
 public class BestFirstSearch extends Search {
 
     public BestFirstSearch(String start, String end) {
