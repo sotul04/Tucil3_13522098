@@ -1,7 +1,9 @@
 package util;
 
 import java.util.ArrayList;
-import java.util.HashSet;public class Node {
+import java.util.HashSet;
+
+public class Node {
     
     /**
      * Menyimpan dictionary yang akan digunakan untuk validasi Node baru yang akan diciptakan
