@@ -168,11 +168,6 @@ public class MainWindow extends javax.swing.JFrame {
         searchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchButton.setPreferredSize(new java.awt.Dimension(100, 35));
         searchButton.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        searchButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchButtonMouseClicked(evt);
-            }
-        });
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
@@ -319,15 +314,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-        search();
+        int val = validateInput();
+        if (val == 2) {
+            search();
+        } else if (val == 1){
+            JOptionPane.showMessageDialog(this, "The word length is not equal", "Unequal word length", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "The words you typed are not listed", "Unidentified word", JOptionPane.PLAIN_MESSAGE);
+            
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
-
-    private void searchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseClicked
-        // TODO add your handling code here:
-        searchButton.setEnabled(false);
-        search();
-        searchButton.setEnabled(true);
-    }//GEN-LAST:event_searchButtonMouseClicked
 
     private void search() {
         
@@ -372,14 +368,19 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
-    private void validateInput() {
+    private int validateInput() {
         String start = inputStart.getText().toLowerCase();
         String end = inputEnd.getText().toLowerCase();
                 
         if (!Node.dictionary.contains(start) || !Node.dictionary.contains(end)) {
             warningLabel.setText("The words you typed are not listed.");
+            return 0;
+        } else if (start.length() != end.length()) {
+            warningLabel.setText("The word length is not equal");
+            return 1;
         } else {
             warningLabel.setText(" ");
+            return 2;
         }
     }
     
