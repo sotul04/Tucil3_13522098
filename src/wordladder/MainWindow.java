@@ -178,11 +178,6 @@ public class MainWindow extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
-        searchButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                searchButtonKeyPressed(evt);
-            }
-        });
         jPanel3.add(searchButton);
 
         jPanel4.setOpaque(false);
@@ -387,11 +382,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
-    private void searchButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchButtonKeyPressed
-        // TODO add your handling code here:
-        search();
-    }//GEN-LAST:event_searchButtonKeyPressed
-
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
         mouseCoordinate = evt.getPoint();
