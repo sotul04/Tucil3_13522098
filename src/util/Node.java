@@ -173,7 +173,6 @@ import java.util.HashSet;public class Node {
         StringBuilder builder = new StringBuilder(value);
 
         int len = value.length();
-        ArrayList<Node> list = new ArrayList<>();
         
         int minHeuristic = len;
         String minString = null;
@@ -213,14 +212,5 @@ import java.util.HashSet;public class Node {
 
         return out;
     }
-    
-//    @Override
-//    public boolean equals(Object anObject) {
-//        if (this == anObject) {
-//            return true;
-//        } 
-//        return (anObject instanceof Node) &&
-//                ((Node) anObject).getValue().equals(getValue());
-//    }
     
 }
