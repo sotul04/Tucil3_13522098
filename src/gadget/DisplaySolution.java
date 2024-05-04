@@ -52,7 +52,7 @@ public class DisplaySolution extends javax.swing.JFrame {
         
         int width = solution.getValue().length() > 24 ? 1800 : solution.getValue().length() * 75;
         
-        int height = len > 10 ? 12 * 60 : (len + 1) * 60;
+        int height = len > 10 ? 12 * 60 : (len + 2) * 60;
        
         
         boolean[][] match = getMatch(solution);

@@ -5,30 +5,23 @@ import java.util.ArrayList;
 public class BestFirstSearch extends Search {
 
     public BestFirstSearch(String start, String end) {
-        super(start, end, new BestComparator());
+        super(start, end, null);
     }
 
     public void search() {
         Node startNode = new Node(start);
-        queue.add(startNode);
-        visited.add(start);
+        Node currNode = startNode;
         
-        while (!queue.isEmpty() && !found) {
+        while (currNode != null && !found) {
             counterNode++;
-            Node currNode = queue.poll();
+            
             if (currNode.getValue().equals(end)) {
                 found = true;
                 solution = currNode;
                 continue;
             }
-            ArrayList<Node> childs = currNode.generateChildHeuristic(end);
             
-            for (Node child : childs) {
-                if (!visited.contains(child.getValue())){
-                    queue.add(child);
-                }
-                visited.add(child.getValue());
-            }
+            currNode = currNode.generateChild(end);
         }
     }
 

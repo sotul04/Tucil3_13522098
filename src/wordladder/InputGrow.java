@@ -56,7 +56,7 @@ public class InputGrow extends javax.swing.JPanel {
             inputs.add(newInput);
 
             gbc.gridx++;
-            inputs.get(gbc.gridx-1).setLabelText(Character.toString((char) key));
+            inputs.get(gbc.gridx-1).setLabelText(Character.toString((char) key).toUpperCase());
             inputs.get(gbc.gridx-1).setPreferredSize(new Dimension(22,26));
             inputs.get(gbc.gridx).setPreferredSize(new Dimension(20,20));
             word.add(Character.toString((char) key));

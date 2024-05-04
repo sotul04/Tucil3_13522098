@@ -12,16 +12,18 @@ public class UCSearch extends Search{
     public void search() {
         Node startNode = new Node(start);
         queue.add(startNode);
-        visited.add(start);
+        visited.add(startNode.getValue());
         
         while (!queue.isEmpty() && !found) {
             counterNode++;
             Node currNode = queue.poll();
+            
             if (currNode.getValue().equals(end)) {
                 found = true;
                 solution = currNode;
                 continue;
             }
+            
             ArrayList<Node> childs = currNode.generateChild();
             
             for (Node child : childs) {

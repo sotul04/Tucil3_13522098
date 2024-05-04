@@ -31,7 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
         Node.initDictionary("src/util/dictionary.txt");
         setIconImage(new ImageIcon("src/icon.image/icon.png").getImage());
         warningLabel.setForeground(Color.RED);
-        warningLabel.setText("");
+        warningLabel.setText(" ");
       
     }
 
@@ -364,7 +364,11 @@ public class MainWindow extends javax.swing.JFrame {
         long elapsed = endTime - startTime;
         
         if (solution.getSolution() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Solusi tidak ditemukan", "Solutions not found", JOptionPane.PLAIN_MESSAGE);
+            String message = "";
+            message += "Solusi tidak ditemukan\n";
+            message += "Time elapsed: " + elapsed + " ms\n";
+            message += "Node visited: " + solution.getCounterNode() + " nodes";
+            JOptionPane.showMessageDialog(rootPane, message, "Solution's not found", JOptionPane.PLAIN_MESSAGE);
         } else {
             DisplaySolution disp = new DisplaySolution(solution.getSolution(), (int) elapsed, solution.getCounterNode(), type);
             disp.setVisible(true);
@@ -377,9 +381,9 @@ public class MainWindow extends javax.swing.JFrame {
         String end = inputEnd.getText().toLowerCase();
                 
         if (!Node.dictionary.contains(start) || !Node.dictionary.contains(end)) {
-            warningLabel.setText("Kata yang dimasukkan tidak ada dalam kamus.");
+            warningLabel.setText("The words you typed are not listed.");
         } else {
-            warningLabel.setText("");
+            warningLabel.setText(" ");
         }
     }
     
@@ -467,6 +471,7 @@ public class MainWindow extends javax.swing.JFrame {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files (*.txt)", "txt");
         dictionaryChooser.setFileFilter(filter);
         dictionaryChooser.setPreferredSize(new Dimension(800,600));
+        dictionaryChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int option = dictionaryChooser.showOpenDialog(this);
         
         if (option == JFileChooser.APPROVE_OPTION) {

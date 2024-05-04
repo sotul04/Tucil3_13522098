@@ -169,13 +169,58 @@ import java.util.HashSet;public class Node {
         return list;
     }
     
-    @Override
-    public boolean equals(Object anObject) {
-        if (this == anObject) {
-            return true;
-        } 
-        return (anObject instanceof Node) &&
-                ((Node) anObject).getValue().equals(getValue());
+    public Node generateChild(String target) {
+        StringBuilder builder = new StringBuilder(value);
+
+        int len = value.length();
+        ArrayList<Node> list = new ArrayList<>();
+        
+        int minHeuristic = len;
+        String minString = null;
+
+        for (int i = 0; i < len; i++) {
+
+            if (i > 0){
+                builder.setCharAt(i-1, value.charAt(i-1));
+            }
+
+            for (int j = 0; j < 26; j++) {
+
+                builder.setCharAt(i, letters[j]);
+                String newValue = new String(builder);
+
+                if (dictionary.contains(newValue)) {
+                    if (!isValueVisited(newValue)) {
+                        
+                        int currentHeuristic = countHeuristic(newValue, target);
+                        
+                        if (currentHeuristic < minHeuristic) {
+                            minHeuristic = currentHeuristic;
+                            minString = newValue;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (minString == null) {
+            return null;
+        }
+        
+        Node out = new Node(minString, minHeuristic);
+        out.setParent(this);
+        out.setLength(this.length + 1);
+
+        return out;
     }
+    
+//    @Override
+//    public boolean equals(Object anObject) {
+//        if (this == anObject) {
+//            return true;
+//        } 
+//        return (anObject instanceof Node) &&
+//                ((Node) anObject).getValue().equals(getValue());
+//    }
     
 }

@@ -14,7 +14,10 @@ public class AStartSearch extends Search{
         
         while (!queue.isEmpty()) {
             Node currNode = queue.poll();
+            
+            visited.add(currNode.getValue());
             counterNode++;
+            
             if (currNode.getValue().equals(end)) {
                 if (found) {
                     if (solution.length() > currNode.length()){
@@ -35,7 +38,9 @@ public class AStartSearch extends Search{
             ArrayList<Node> childs = currNode.generateChildHeuristic(end);
             
             for (Node child : childs) {
-                queue.add(child);
+                if (!visited.contains(child.getValue())) {
+                    queue.add(child);
+                }
             }
         }
     }
