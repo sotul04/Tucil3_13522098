@@ -53,6 +53,8 @@ If the solution doesn't exist the display is would be like this.
 </p>
 <br>
 
+> You can change the dictionary for checking the validity with your expected solutions using the button ```Change Dictionary``` on the bottom left corner.
+
 
 ## Setup
 This program requires
